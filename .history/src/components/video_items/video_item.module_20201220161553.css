@@ -1,0 +1,19 @@
+.all {
+  margin: 28px 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow-wrap: normal;
+  flex-basis: 20%;
+  border: 3px solid black;
+}
+
+.chTitle {
+}
+
+.title {
+  font-size: 1.1rem;
+}
+
+.img {
+}

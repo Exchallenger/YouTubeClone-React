@@ -1,13 +1,7 @@
 .title {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 12px 12px;
   margin: auto;
   text-align: center;
   color: white;
-  border: 3px solid white;
-  border-radius: 24px;
-  width: 50vw;
-  margin-top: 1rem;
 }
 
 .ul {

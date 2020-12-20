@@ -5,7 +5,7 @@ import styles from './video_list.module.css'
 
 const VideoList = (props) => (
     <>
-    <h1 className={styles.title}>" Top 25 Most Popular Video "</h1>
+    <h1>Top 25 Most Popular Video</h1>
     <ul className={styles.ul}>
         {props.video.map(video =><VideoItem key={video.id}  video={video}/> )}
         </ul></>);

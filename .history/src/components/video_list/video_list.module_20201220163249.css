@@ -1,0 +1,10 @@
+.title {
+  margin: auto;
+}
+
+.ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  text-align: center;
+}
