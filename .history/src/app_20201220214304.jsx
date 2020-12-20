@@ -8,19 +8,21 @@ import VideoList from './components/video_list/video_list.module';
 
 function App() {
   let [video, setVideo] = useState([]);
-  const getSearch = url => {
-    axios.get(url)
-    .then(items=>setVideo(items.data.items))};
   useEffect(()=>{
-    axios.get("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&type=video&key=AIzaSyBhKF5ee0oCI2BIL1BmPi9AklSFiJUXnuI")
+    axios.get("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=AIzaSyBhKF5ee0oCI2BIL1BmPi9AklSFiJUXnuI")
     .then(result => setVideo(result.data.items))
      },[]);
+  getSearch = (url) => console.log(url);
 
-
+  //  {
+        // axios.get(url).then(result=>console.log(result));}
+  // useEffect(() =>{
+  //   getSearch();
+  // // })
 
  
   return <>
-  <Navbar video={video} onSearch={getSearch} />
+  <Navbar video={video}/>
   <VideoList video={video}/>
   </>;
 

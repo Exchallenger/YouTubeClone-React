@@ -3,12 +3,10 @@ import styles from './navbar.module.css';
 
 const Navbar = ({onSearch}) => {
     const inputRef = useRef();
-    const onSubmit = (event) =>{
-        event.preventDefault();
+    const onSubmit = () =>{
         const name = inputRef.current.value;
         const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${name}&key=AIzaSyBhKF5ee0oCI2BIL1BmPi9AklSFiJUXnuI`;
         onSearch(url);
-  
     }
 
 

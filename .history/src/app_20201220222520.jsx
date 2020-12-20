@@ -10,7 +10,8 @@ function App() {
   let [video, setVideo] = useState([]);
   const getSearch = url => {
     axios.get(url)
-    .then(items=>setVideo(items.data.items))};
+    .then(item => ({...item, id: item.items.id.videoId}))
+    .then(result=>setVideo(result.data.items))};
   useEffect(()=>{
     axios.get("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&type=video&key=AIzaSyBhKF5ee0oCI2BIL1BmPi9AklSFiJUXnuI")
     .then(result => setVideo(result.data.items))

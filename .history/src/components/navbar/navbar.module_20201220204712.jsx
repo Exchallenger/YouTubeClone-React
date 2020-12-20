@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styles from './navbar.module.css';
+import axios from 'axios';
 
-const Navbar = ({onSearch}) => {
-    const inputRef = useRef();
-    const onSubmit = (event) =>{
-        event.preventDefault();
+const Navbar = () => {
+    const onSubmit = () =>{
+        const inputRef = React.createRef();
         const name = inputRef.current.value;
         const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${name}&key=AIzaSyBhKF5ee0oCI2BIL1BmPi9AklSFiJUXnuI`;
-        onSearch(url);
-  
+        axios.get(url).then(result => console.log(result));
     }
 
 
