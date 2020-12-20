@@ -1,0 +1,13 @@
+.form {
+  background-color: beige;
+  padding: 4px 12px;
+}
+.logo_name {
+  font-size: 1.5rem;
+  margin: 8px 12px;
+}
+.input {
+  font-size: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+}

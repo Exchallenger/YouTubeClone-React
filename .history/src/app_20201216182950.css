@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+/* font awesome css */
+.fa-youtube {
+  color: red;
+  font-size: 1.5rem;
+}
+.fa-search {
+  pad: 2px 2px;
+  margin-left: 8px;
+  font-size: 1.5rem;
+  border: 1px solid white;
+}

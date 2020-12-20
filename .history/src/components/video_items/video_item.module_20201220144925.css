@@ -1,0 +1,16 @@
+.all {
+  margin: 36px 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.chTitle {
+  color: grey;
+}
+
+.title {
+}
+
+.img {
+}
