@@ -7,8 +7,13 @@
 }
 .logo_img {
   margin-left: 12px;
+  font-size: 2rem;
+  transition: all 200ms ease-in;
 }
-
+.logo_img:hover {
+  transform: scale(1.03);
+  color: red;
+}
 .logo_name {
   color: white;
   font-size: 2rem;
@@ -24,8 +29,6 @@
   font-size: 1.5rem;
   height: 2.5rem;
   line-height: 2rem;
-  border-radius: 12px;
-  outline: none;
 }
 
 .input_form {
