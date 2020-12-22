@@ -6,7 +6,7 @@ const Navbar = ({onSearch}) => {
     const onSubmit = (event) =>{
         event.preventDefault();
         const name = inputRef.current.value;
-        const key = process.env.REACT_APP_YOUTUBE_API_KEY;
+        const key = REACT_APP_YOUTUBE_API_KEY;
         const url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${name}&key=${key}`;
         onSearch(url);
   

@@ -5,10 +5,10 @@ import App from './app';
 import '@fortawesome/fontawesome-free/js/all.js';
 import Youtube from './service/youtube';
 
-const youtube = new Youtube();
+const youtube = new Youtube('sdf');
 ReactDOM.render(
   <React.StrictMode>
-    <App youtube={youtube} />
+    <App youtube={youtube}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

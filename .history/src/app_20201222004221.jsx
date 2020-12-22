@@ -1,17 +1,20 @@
 import './app.css';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Navbar from './components/navbar/navbar.module';
 import VideoList from './components/video_list/video_list.module';
 
 
 
-function App({youtube}) {
+function App() {
   let [video, setVideo] = useState([]);
+  const key = process.env.REACT_APP_YOUTUBE_API_KEY;
   const getSearch = url => {
-    youtube.search(url).then(setVideo);
-  };
+    axios.get(url)
+    .then(items=>setVideo(items.data.items))};
   useEffect(()=>{
-    youtube.mostPopular().then(setVideo);
+    axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&type=video&key=${key}`)
+    .then(result => setVideo(result.data.items))
      },[]);
 
 
@@ -20,8 +23,7 @@ function App({youtube}) {
   return <>
   <Navbar video={video} onSearch={getSearch} />
   <VideoList video={video}/>
-  </>
- 
+  </>;
 
 }
 

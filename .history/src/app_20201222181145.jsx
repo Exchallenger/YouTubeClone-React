@@ -17,10 +17,9 @@ function App({youtube}) {
 
 
  
-  return <>
+  return <i>
   <Navbar video={video} onSearch={getSearch} />
   <VideoList video={video}/>
-  </>
  
 
 }
