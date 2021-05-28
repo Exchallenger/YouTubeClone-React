@@ -1,13 +1,29 @@
 import React from 'react';
+import styled from 'styled-components';
 import VideoItem from '../video_items/video_item.module';
-import styles from './video_list.module.css'
 
 
-const VideoList = (props) => (
-    <>
-    <h1 className={styles.title}>" Video List"</h1>
-    <ul className={styles.ul}>
-        {props.video.map(video =><VideoItem key={video.id}  video={video}/> )}
-        </ul></>);
+const UL = styled.ul`
+  padding-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  @media screen and (max-width:400px){
+    padding-left: 0px;
+  }
+  
+`;
+
+const VideoList = ({getDeliever,video}) => {
+  const onVideo = (vi) => {
+      getDeliever(vi);
+  }
+  return(    
+      <UL>
+          {video.map(video =><VideoItem onVideo={onVideo} key={video.id}  video={video}/> )}
+      </UL>);
+      };
 
 export default VideoList;

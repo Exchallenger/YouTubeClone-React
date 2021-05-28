@@ -8,7 +8,7 @@ import Youtube from './service/youtube';
 const youtube = new Youtube();
 ReactDOM.render(
   <React.StrictMode>
-    <App youtube={youtube} />
+    <App youtube={youtube}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
