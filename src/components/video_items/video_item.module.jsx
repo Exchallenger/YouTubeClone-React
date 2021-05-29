@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { UserTheme } from '../../app';
 
 
 const Container = styled.div`
@@ -31,15 +32,16 @@ color: gray;
 
 const Title = styled.span`
 font-size: 1.1rem;
-  color: white;
+color: ${props => props.context ==='light' ? 'black' : 'white'};
   margin: 4px 0px;
 `;
 
 const VideoItem = ({video,onVideo}) => {
+  const context = useContext(UserTheme);
         return(
         <Container onClick={() => onVideo(video)}>  
             <Img src={video.snippet.thumbnails.medium.url}></Img>
-            <Title>{video.snippet.title}</Title>
+            <Title context={context}>{video.snippet.title}</Title>
             <ChTitle>{video.snippet.channelTitle}</ChTitle>
         </Container>         
         );

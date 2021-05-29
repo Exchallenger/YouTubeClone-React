@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
+import { UserTheme } from '../../app';
 import img from '../../images/profile.jpeg';
 
 
 const width = window.screen.width;
 
 const Container = styled.div`
-    position: fixed;
+  position: fixed;
   top: 0px;
   width: 100%;
 `;
@@ -17,7 +18,8 @@ const Form = styled.form`
   position: relative;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(32,32,32);
+  background-color: ${props => props.context ==='light' ? 'white' : 'rgb(32,32,32)'};
+  /* background-color: rgb(32,32,32); */
   padding: 0px 24px 0px 12px;
 `;
 
@@ -36,7 +38,7 @@ const LogoImg = styled.span`
 `;
 
 const LogoName = styled.span`
-color: white;
+  color: ${props => props.context ==='light' ? 'black' : 'white'};
   font-size: 1.4rem;
   font-weight: bold;
   margin: 8px 12px;
@@ -46,8 +48,9 @@ color: white;
   `;
 
 const InputForm = styled.span`
-  height: 30px;
+  height: 31px;
   box-sizing: content-box;
+  border: 1px solid black;
   @media screen and (max-width: 750px) {
     width: 300px;
   }
@@ -55,8 +58,8 @@ const InputForm = styled.span`
 
 const Input = styled.input`
     /* margin-top: 4px; */
-  color: white;
-  background-color: rgb(19,19,19);
+    color: ${props => props.context ==='light' ? 'black' : 'white'};
+  background-color: ${props => props.context ==='light' ? 'white' : 'rgb(19,19,19)'};
   /* border: 1px solid white; */
   width: ${width/3}px;
   outline: none;
@@ -75,15 +78,15 @@ const Input = styled.input`
 const Btn = styled.button`
   cursor: pointer;
   position: relative;
-  top:1px;
+  /* top:1px; */
   right: 0px;
   /* margin-top: 2px; */
   outline: none;
   height: 100%;
   margin: 0px;
-  background-color: rgb(44, 44, 44);
+  background-color: ${props => props.context ==='light' ? 'white' : 'rgb(44,44,44)'};
   border: none;
-  /* border: 1px solid white; */
+  border-left: 1px solid black;
   color: gray;
   font-size: 1rem;
   padding: 0px 8px;
@@ -99,9 +102,12 @@ const Profile = styled.img`
     border-radius: 50%;
 `;
 
+// style={{backgroundColor: context ==='light' ? 'white' :'rgb(32,32,32)'}}
 
 
 const Navbar = ({onSearch,onClick}) => {
+  const context = useContext(UserTheme);
+  console.log(context);
     const inputRef = useRef();
     const onSubmit = (event) =>{
         event.preventDefault();
@@ -118,18 +124,23 @@ const Navbar = ({onSearch,onClick}) => {
 
     return(
         <Container>
-        <Form onSubmit={onSubmit}>
+        <Form context={context} onSubmit={onSubmit}>
         <Logo onClick={Clicked}>
             <LogoImg><i className="fab fa-youtube"></i></LogoImg>
-            <LogoName>ExchTube</LogoName>
+            <LogoName context={context}>
+              ExchTube
+              </LogoName>
         </Logo>
         <InputForm>
-            <Input ref={inputRef} type="text" placeholder="검색"></Input>
-            <Btn>
-              <i className="fas fa-search"></i>
-              
+            <Input 
+            ref={inputRef} 
+            type="text" 
+            placeholder="검색"
+            context={context}
+            ></Input>
+            <Btn context={context}>
+              <i className="fas fa-search"></i>       
               </Btn>
-
         </InputForm>
         <ProfileContainer>
             <Profile src={img}></Profile>

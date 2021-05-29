@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 import Aside from './components/aside/Aside';
 import Navbar from './components/navbar/navbar.module';
 import VideoDetail from './components/video_detail/video_detail';
 import VideoList from './components/video_list/video_list.module';
+
+
+const Container = styled.div`
+
+`;
 
 const Forflex = styled.div`
   display: flex;
@@ -19,9 +24,18 @@ const ListContainer = styled.div`
   flex: 1 1 30%;
 `;
 
+export const UserTheme = createContext();
+
+
 const App = ({youtube}) => {
   let [video, setVideo] = useState([]);
   const [selvideo, setSelVideo] = useState(null);
+
+  const [theme, setTheme] =  useState('dark');
+  const themeToggle = () =>{
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  }
+
   const getSearch = url => {
     youtube.search(url).then(setVideo);
   };
@@ -37,10 +51,12 @@ const App = ({youtube}) => {
     setSelVideo(vi);
   }
   return (
-    <>
+    <Container>
+    <UserTheme.Provider value={theme}>
         <Navbar video={video} onSearch={getSearch} onClick={onClick}/>
-        {!selvideo && <Aside/>}
-        <Forflex>
+        {!selvideo && <Aside theme={theme} themeToggle={themeToggle}/>}
+        <Forflex
+        style={{backgroundColor: theme==='light' ? 'rgb(249,249,249)':'rgb(23, 23, 23)'}}>
         {selvideo &&
          <DetailContainer><VideoDetail video={selvideo}/></DetailContainer>}
         <ListContainer
@@ -49,7 +65,8 @@ const App = ({youtube}) => {
         <VideoList getDeliever={getDeliever} video={video}/>
         </ListContainer>
         </Forflex>
-    </>
+    </UserTheme.Provider>
+    </Container>
   );
 };
 

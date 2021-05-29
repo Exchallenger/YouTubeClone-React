@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { UserTheme } from '../../app';
 
 const Container = styled.div`
     display: flex;
@@ -9,7 +10,6 @@ const Container = styled.div`
     position: fixed;
     top: 56px;
     left: 0;
-    background-color: rgb(32,32,32);
     height: 100%;
     padding-top: 20px;
     @media screen and (max-width:400px){
@@ -23,35 +23,44 @@ const Btn = styled.button`
     outline: none;
     cursor: pointer;
     background-color: transparent;
-    color: white;
+    color: ${props => props.context ==='light' ? 'black' : 'white'};
     `;
 
 const Text = styled.span`
 margin-bottom: 24px;
     font-size: 24px;
     text-align: center;
-    color: white;
+    color: ${props => props.context ==='light' ? 'black' : 'white'};
     font-size: 0.5rem;
 `;
 
-const Aside = () => {
-    const [mode, setMode] = useState('다크');
+const Aside = ({theme,themeToggle}) => {
+    const context = useContext(UserTheme);
+    const [mode, setMode] = useState();
+    useEffect(() =>{
+        theme === 'light' ? setMode('다크') : setMode('라이트');
+    },[theme])
 
     const onClick = () =>{
-        if(mode ==='다크'){setMode('라이트');}
-        else if(mode ==='라이트'){setMode('다크')}
+        if(theme ==='light'){
+            setMode('다크');
+            themeToggle();
+        }else{
+            setMode('라이트');
+            themeToggle();
+        }
     }
     return (
-        <Container>
-            <Btn>
+        <Container
+        style={{backgroundColor: context==='light' ? 'white' :'rgb(32,32,32)'}}>
+            <Btn context={context}>
             <i className="fas fa-home"></i>
             </Btn>
-            <Text>홈</Text>
-            <Btn onClick={onClick}>
+            <Text context={context}>홈</Text>
+            <Btn onClick={onClick} context={context}>
             <i className="fas fa-adjust"></i>
             </Btn>
-            <Text>{mode} 모드</Text>
-            
+            <Text context={context}>{mode} 모드</Text>
         </Container>
     );
 };

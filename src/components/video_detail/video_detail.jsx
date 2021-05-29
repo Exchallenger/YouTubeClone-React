@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { UserTheme } from '../../app';
 import { trimText } from '../../common';
 
 
@@ -12,7 +13,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.h2`
-    color:white;
+    color: ${props => props.context ==='light' ? 'black' : 'white'};
 `;
 
 const Date = styled.div`
@@ -23,11 +24,11 @@ const Date = styled.div`
 `;
 
 const Channel = styled.h4`
-    color: white;
+   color: ${props => props.context ==='light' ? 'black' : 'white'};
 `;
 
 const Description = styled.h5`
-    color:white;
+    color: ${props => props.context ==='light' ? 'black' : 'white'};
 `;
 
 const Line = styled.div`
@@ -37,7 +38,7 @@ const Line = styled.div`
 `;
 
 const VideoDetail = ({video}) => {
-    console.log(video.id);
+    const context = useContext(UserTheme);    
     return (
         <Container>
             <iframe 
@@ -49,17 +50,17 @@ const VideoDetail = ({video}) => {
             frameborder="0" 
             allowfullscreen>   
             </iframe>
-            <Title>
+            <Title context={context}>
                 {video.snippet.title}
             </Title>
             <Date>
                 {trimText(video.snippet.publishedAt)}
             </Date>
             <Line/>
-            <Channel>
+            <Channel context={context}>
                 {video.snippet.channelTitle}
             </Channel>
-            <Description>
+            <Description context={context}>
                 {video.snippet.description}
             </Description>
             <Line/>
